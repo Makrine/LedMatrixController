@@ -7,6 +7,7 @@
 class LedController
 {
     protected:
+        byte **states;
         byte *rows, *colR, *colG, *colB;
         byte rowSize, colSize;
         byte refreshRate;
@@ -23,6 +24,12 @@ class LedController
         void ResetStates();
         void LedState(COLOR color, byte rowIndex, byte colIndex, byte value);
         void Refresh(byte refreshRate);
+        void RememberState(bool flag);
+        void MakeStatesMatrix();
+        void UpdateStatesMatrix(byte rowIndex, byte colIndex, byte color);
+        void CheckStatesMatrix();
+        //void printArray();
+        bool IsOn(byte rowIndex, byte colIndex);
 };
 
 #endif
