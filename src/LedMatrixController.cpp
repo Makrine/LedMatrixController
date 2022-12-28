@@ -114,29 +114,19 @@ void LedController::LedState(COLOR color, byte rowIndex, byte colIndex, byte val
       switch(color)
       {
           case COLOR::RED:
+              analogWrite(colR[colIndex], value);
               UpdateStatesMatrix(rowIndex, colIndex, red);
               break;
           case COLOR::GREEN:
+              analogWrite(colG[colIndex], value);
               UpdateStatesMatrix(rowIndex, colIndex, green);
               break;
           case COLOR::BLUE:
+              analogWrite(colB[colIndex], value);
               UpdateStatesMatrix(rowIndex, colIndex, blue);
               break;
       }
       
-    }
-      
-    switch(color)
-    {
-        case COLOR::RED:
-            analogWrite(colR[colIndex], value);
-            break;
-        case COLOR::GREEN:
-            analogWrite(colG[colIndex], value);
-            break;
-        case COLOR::BLUE:
-            analogWrite(colB[colIndex], value);
-            break;
     }
     
     Refresh(refreshRate);
