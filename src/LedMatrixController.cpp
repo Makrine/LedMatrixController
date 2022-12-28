@@ -75,18 +75,6 @@ void LedController::SetPinModes()
     } 
 }
 
-// void LedController::printArray()
-// {
-//     for(int i = 0; i < rowSize; i++)
-//     {
-//         for(int j = 0; j < colSize; j++)
-//         {
-//             Serial.print(states[i][j]);
-//         }
-            
-//         Serial.println();
-//     }
-// }
 
 void LedController::ResetStates()
 {
