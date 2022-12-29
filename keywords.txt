@@ -7,3 +7,4 @@ MakeStatesMatrix	KEYWORD2
 UpdateStatesMatrix	KEYWORD2
 CheckStatesMatrix	KEYWORD2
 IsOn	KEYWORD2
+GetStatesMatrix KEYWORD2
