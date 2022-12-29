@@ -1,0 +1,9 @@
+LedController	KEYWORD1
+SetPinModes	KEYWORD2
+ResetStates	KEYWORD2
+LedState	KEYWORD2
+Refresh	KEYWORD2
+MakeStatesMatrix	KEYWORD2
+UpdateStatesMatrix	KEYWORD2
+CheckStatesMatrix	KEYWORD2
+IsOn	KEYWORD2
