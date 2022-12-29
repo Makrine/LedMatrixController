@@ -1,6 +1,3 @@
-#arduino
-*.ino
-
 # Prerequisites
 *.d
 
