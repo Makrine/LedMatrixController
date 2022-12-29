@@ -40,26 +40,32 @@ void LedController::CheckStatesMatrix()
   {
     for(int j = 0; j < colSize; j++)
     {
+      INDEX_LED index(i, j);
       if(states[i][j] == off)
-        LedState(GREEN, i, j, 0);
+        LedState(GREEN, index, 0);
       if(states[i][j] == green)
-        LedState(GREEN, i, j, 255);
+        LedState(GREEN, index, 255);
       else if(states[i][j] == red)
-        LedState(RED, i, j, 255);
+        LedState(RED, index, 255);
       else if(states[i][j] == blue)
-        LedState(BLUE, i, j, 255);
+        LedState(BLUE, index, 255);
     }
   }
 }
 
-void LedController::UpdateStatesMatrix(byte rowIndex, byte colIndex, byte color)
+byte** LedController::GetStatesMatrix()
 {
-  states[rowIndex][colIndex] = color;
+	return states;
 }
 
-bool LedController::IsOn(byte rowIndex, byte colIndex)
+void LedController::UpdateStatesMatrix(INDEX_LED index, byte color)
 {
-  if(states[rowIndex][colIndex] != off) return true;
+  states[index.row][index.column] = color;
+}
+
+bool LedController::IsOn(INDEX_LED index)
+{
+  if(states[index.row][index.column]  != off) return true;
   else return false;
 }
 
@@ -88,30 +94,30 @@ void LedController::ResetStates()
     } 
 }
 
-void LedController::LedState(COLOR color, byte rowIndex, byte colIndex, byte value)
+void LedController::LedState(COLOR color, INDEX_LED index, byte value)
 {
     if(value == 0)
     {
-      digitalWrite(rows[rowIndex], HIGH);
-      UpdateStatesMatrix(rowIndex, colIndex, 0);
+      digitalWrite(rows[index.row], HIGH);
+      UpdateStatesMatrix(index, 0);
     }
       
     else
     {
-      digitalWrite(rows[rowIndex], LOW);
+      digitalWrite(rows[index.row], LOW);
       switch(color)
       {
           case COLOR::RED:
-              analogWrite(colR[colIndex], value);
-              UpdateStatesMatrix(rowIndex, colIndex, red);
+              analogWrite(colR[index.column], value);
+              UpdateStatesMatrix(index, red);
               break;
           case COLOR::GREEN:
-              analogWrite(colG[colIndex], value);
-              UpdateStatesMatrix(rowIndex, colIndex, green);
+              analogWrite(colG[index.column], value);
+              UpdateStatesMatrix(index, green);
               break;
           case COLOR::BLUE:
-              analogWrite(colB[colIndex], value);
-              UpdateStatesMatrix(rowIndex, colIndex, blue);
+              analogWrite(colB[index.column], value);
+              UpdateStatesMatrix(index, blue);
               break;
       }
       

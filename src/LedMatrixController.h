@@ -4,6 +4,22 @@
 
 #include "Arduino.h"
 
+struct INDEX_LED
+{
+    int row, column;
+
+    INDEX_LED()
+    {
+        row = -1;
+        column = -1;
+    }
+    INDEX_LED(int r, int c)
+    {
+        row = r;
+        column = c;
+    }
+};
+
 class LedController
 {
     protected:
@@ -22,12 +38,13 @@ class LedController
         LedController(byte *r, byte *cR, byte *cG, byte *cB, byte rS, byte cS, byte rR);
         void SetPinModes();
         void ResetStates();
-        void LedState(COLOR color, byte rowIndex, byte colIndex, byte value);
+        void LedState(COLOR color, INDEX_LED index, byte value);
         void Refresh(byte refreshRate);
         void MakeStatesMatrix();
-        void UpdateStatesMatrix(byte rowIndex, byte colIndex, byte color);
+        void UpdateStatesMatrix(INDEX_LED index, byte color);
         void CheckStatesMatrix();
-        bool IsOn(byte rowIndex, byte colIndex);
+        bool IsOn(INDEX_LED index);
+        byte** GetStatesMatrix();
 };
 
 #endif
